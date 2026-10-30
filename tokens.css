@@ -1,0 +1,88 @@
+:root {
+  color-scheme: light dark;
+  --sw-bg: #fff;
+  --sw-fg: #000;
+  --sw-muted: rgb(0 0 0 / 0.66);
+  --sw-line: rgb(0 0 0 / 0.16);
+  --sw-soft: rgb(0 0 0 / 0.05);
+  --sw-strong: rgb(0 0 0 / 0.34);
+  --sw-shadow: 0 20px 70px rgb(0 0 0 / 0.08);
+  --sw-radius: 20px;
+  --sw-radius-sm: 12px;
+  --sw-shell: 1240px;
+  --sw-header: 74px;
+  --sw-font: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --sw-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sw-bg: #000;
+    --sw-fg: #fff;
+    --sw-muted: rgb(255 255 255 / 0.72);
+    --sw-line: rgb(255 255 255 / 0.18);
+    --sw-soft: rgb(255 255 255 / 0.07);
+    --sw-strong: rgb(255 255 255 / 0.38);
+    --sw-shadow: 0 20px 70px rgb(255 255 255 / 0.04);
+  }
+}
+
+html[data-theme="light"] {
+  --sw-bg: #fff;
+  --sw-fg: #000;
+  --sw-muted: rgb(0 0 0 / 0.66);
+  --sw-line: rgb(0 0 0 / 0.16);
+  --sw-soft: rgb(0 0 0 / 0.05);
+  --sw-strong: rgb(0 0 0 / 0.34);
+}
+
+html[data-theme="dark"] {
+  --sw-bg: #000;
+  --sw-fg: #fff;
+  --sw-muted: rgb(255 255 255 / 0.72);
+  --sw-line: rgb(255 255 255 / 0.18);
+  --sw-soft: rgb(255 255 255 / 0.07);
+  --sw-strong: rgb(255 255 255 / 0.38);
+}
+
+.sw-shell {
+  width: min(calc(100% - 48px), var(--sw-shell));
+  margin-inline: auto;
+}
+
+.sw-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 1px solid var(--sw-fg);
+  border-radius: var(--sw-radius-sm);
+  background: var(--sw-fg);
+  color: var(--sw-bg);
+  font: 800 1rem var(--sw-font);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sw-button--secondary {
+  background: var(--sw-bg);
+  color: var(--sw-fg);
+}
+
+:focus-visible {
+  outline: 3px solid var(--sw-fg);
+  outline-offset: 3px;
+}
+
+@media (max-width: 620px) {
+  .sw-shell { width: min(calc(100% - 32px), var(--sw-shell)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
