@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://skunkworks-portugal.github.io/www/sitemap.xml

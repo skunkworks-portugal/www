@@ -1,0 +1,22 @@
+/* Shared Skunkworks corporate chrome; Portugal content and site interactions remain intact. */
+:root {--sw-shell:1240px;--sw-header:74px;--sw-radius:20px;--sw-radius-sm:12px;--sw-font:Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.site-header{background:#000;color:#fff;border-bottom:1px solid rgba(255,255,255,.22);box-shadow:0 1px 0 rgba(255,255,255,.22)}
+.site-header .brand-name small,.site-header .desktop-nav a{color:rgba(255,255,255,.76)}
+.site-header .desktop-nav a:hover,.site-header .desktop-nav a:focus-visible{color:#fff}
+.site-header .icon-button,.site-header .menu-button{border-color:rgba(255,255,255,.3);color:#fff}
+.site-header .header-cta{border-color:#fff;background:#fff;color:#000}
+.site-header .logo-black{display:none!important}.site-header .logo-white{display:block!important}
+.site-header :focus-visible{outline:3px solid #fff;outline-offset:3px}
+.mobile-menu{max-height:calc(100dvh - var(--sw-header));overflow-y:auto;overscroll-behavior:contain}
+.mobile-menu a{min-height:44px}
+.site-footer{margin-top:80px}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .site-header{background:#fff;color:#000;border-bottom-color:rgba(0,0,0,.2)}:root:not([data-theme="light"]) .site-header .logo-black{display:block!important}:root:not([data-theme="light"]) .site-header .logo-white{display:none!important}:root:not([data-theme="light"]) .site-header .brand-name small,:root:not([data-theme="light"]) .site-header .desktop-nav a{color:rgba(0,0,0,.72)}:root:not([data-theme="light"]) .site-header .icon-button,:root:not([data-theme="light"]) .site-header .menu-button{border-color:rgba(0,0,0,.2);color:#000}:root:not([data-theme="light"]) .site-header .header-cta{border-color:#000;background:#000;color:#fff}:root:not([data-theme="light"]) .site-header :focus-visible{outline-color:#000}}
+html[data-theme="dark"] .site-header{background:#fff;color:#000;border-bottom-color:rgba(0,0,0,.2)}
+html[data-theme="dark"] .site-header .logo-black{display:block!important}
+html[data-theme="dark"] .site-header .logo-white{display:none!important}
+html[data-theme="dark"] .site-header .brand-name small,html[data-theme="dark"] .site-header .desktop-nav a{color:rgba(0,0,0,.72)}
+html[data-theme="dark"] .site-header .icon-button,html[data-theme="dark"] .site-header .menu-button{color:#000;border-color:rgba(0,0,0,.2)}
+html[data-theme="dark"] .site-header .header-cta{background:#000;color:#fff;border-color:#000}
+html[data-theme="dark"] .site-header :focus-visible{outline-color:#000}
+@media(max-width:620px){.sw-shell{width:min(calc(100% - 32px),var(--sw-shell))}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
