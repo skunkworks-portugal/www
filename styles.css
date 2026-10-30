@@ -323,6 +323,33 @@ html[data-theme="light"] .theme-toggle .moon { display: none; }
 .learn-icon span { inset: 5px 5px 18px; border-radius: 0; }
 .learn-icon span:nth-child(2) { inset: 30px 18px 2px; border-top: 0; }
 
+.partners { border-top: 1px solid var(--sw-line); }
+.partner-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--sw-line); border-left: 1px solid var(--sw-line); }
+.partner-tile { display: flex; flex-direction: column; min-height: 360px; padding: clamp(22px, 3vw, 34px); border-right: 1px solid var(--sw-line); border-bottom: 1px solid var(--sw-line); }
+.partner-logo { display: flex; align-items: center; gap: 12px; min-height: 92px; }
+.partner-logo > img { width: 38px; height: 38px; object-fit: contain; }
+.partner-wordmark { font-size: 1.22rem; font-weight: 850; letter-spacing: -0.035em; }
+.partner-wordmark--ibm { font-family: "Arial Black", Arial, sans-serif; font-size: 2.25rem; letter-spacing: -0.1em; }
+.partner-wordmark--easy { font-size: 1.75rem; font-weight: 450; letter-spacing: -0.06em; }
+.partner-wordmark--easy b { font-weight: 900; }
+.partner-wordmark--also { padding: 5px 12px; border: 3px solid currentColor; font-size: 1.75rem; letter-spacing: 0.03em; }
+.partner-logo--skunkworks { gap: 10px; font-size: 0.92rem; font-weight: 850; line-height: 1.05; }
+.partner-skunk-mark { position: relative; width: 42px; height: 42px; flex: 0 0 auto; }
+.partner-skunk-mark img { position: absolute; width: 100%; height: 100%; object-fit: contain; }
+.microsoft-mark { display: grid; grid-template-columns: repeat(2, 15px); gap: 3px; }
+.microsoft-mark i { display: block; width: 15px; height: 15px; background: currentColor; }
+.partner-tile > div:last-child { margin-top: auto; }
+.partner-tile small, .distributor-tile small { color: var(--sw-muted); font-size: 0.68rem; font-weight: 850; letter-spacing: 0.12em; text-transform: uppercase; }
+.partner-tile h3, .distributor-tile h3 { margin: 7px 0 10px; font-size: 1.35rem; letter-spacing: -0.035em; }
+.partner-tile p, .distributor-tile p { margin: 0; color: var(--sw-muted); font-size: 0.9rem; }
+.distributor-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-top: clamp(64px, 8vw, 100px); margin-bottom: 24px; }
+.distributor-heading .eyebrow { margin: 0; }
+.distributor-heading h3 { max-width: 650px; margin: 0; font-size: clamp(2rem, 4vw, 3.7rem); line-height: 1; letter-spacing: -0.055em; }
+.distributor-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--sw-line); border-left: 1px solid var(--sw-line); }
+.distributor-tile { display: grid; grid-template-columns: 0.72fr 1.28fr; align-items: center; min-height: 250px; gap: 26px; padding: clamp(24px, 4vw, 46px); border-right: 1px solid var(--sw-line); border-bottom: 1px solid var(--sw-line); }
+html[data-theme="dark"] .partner-logo > img { filter: invert(1); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .partner-logo > img { filter: invert(1); } }
+
 .method { padding-block: clamp(88px, 12vw, 160px); background: var(--sw-fg); color: var(--sw-bg); }
 .method .eyebrow, .method .split-heading > p { color: color-mix(in srgb, var(--sw-bg) 65%, transparent); }
 .split-heading { display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: end; max-width: none; gap: 60px; }
@@ -410,6 +437,8 @@ html[data-theme="light"] .theme-toggle .moon { display: none; }
   .header-cta { display: none; }
   .hero { grid-template-columns: 1fr 0.68fr; }
   .method-steps { grid-template-columns: repeat(2, 1fr); }
+  .partner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .distributor-grid { grid-template-columns: 1fr; }
   .method-steps li:nth-child(2) { border-right: 0; }
   .method-steps li:nth-child(n+3) { border-top: 1px solid color-mix(in srgb, var(--sw-bg) 24%, transparent); }
 }
@@ -448,6 +477,11 @@ html[data-theme="light"] .theme-toggle .moon { display: none; }
   .footer-contact { display: grid; }
   .footer-contact address { margin-left: 0; }
   .field-grid { grid-template-columns: 1fr; }
+  .partner-grid { grid-template-columns: 1fr; border-left: 0; }
+  .partner-tile { min-height: 300px; border-right: 0; }
+  .distributor-heading { display: grid; align-items: start; }
+  .distributor-grid { border-left: 0; }
+  .distributor-tile { grid-template-columns: 1fr; border-right: 0; }
   .ask-heading { display: grid; gap: 4px; }
   .ask-form { grid-template-columns: 1fr; }
   .ask-form .sw-button { width: 100%; }

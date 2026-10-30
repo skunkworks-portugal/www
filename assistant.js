@@ -40,6 +40,14 @@ const assistantServices = [
     keywords: ["diagnostico", "avaliacao", "assessment", "comecar", "prioridade", "estrategia", "consultoria", "ajuda", "nao sei"]
   },
   {
+    id: "partners",
+    category: "Ecossistema",
+    title: "Parceiros e distribuidores",
+    summary: "Conheça os parceiros tecnológicos, de formação e comércio e a nossa rede de distribuição.",
+    href: "index.html#parceiros",
+    keywords: ["parceiros", "partner", "distribuidores", "microsoft", "google", "ibm", "shopify", "comptia", "easyfile", "also", "academy", "skunkworks africa"]
+  },
+  {
     id: "contact",
     category: "Contacto",
     title: "Falar com a equipa",
