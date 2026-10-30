@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="tokens.css">
     <link rel="stylesheet" href="styles.css">
     <script src="site.js" defer></script>
+    <script src="assistant.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main" data-pt="Saltar para o conteúdo" data-en="Skip to content">Saltar para o conteúdo</a>
@@ -38,6 +39,9 @@
         </nav>
 
         <div class="header-actions">
+          <a class="icon-button search-link" href="#ask-skunkworks" aria-label="Pesquisar serviços">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+          </a>
           <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Mudar tema">
             <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
             <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
@@ -87,6 +91,26 @@
         <div class="hero-foot reveal">
           <p data-pt="Baseados em Portugal. Ligados a uma visão global." data-en="Based in Portugal. Connected to a global vision.">Baseados em Portugal. Ligados a uma visão global.</p>
           <a href="#solucoes" class="scroll-cue" aria-label="Descer para soluções">↓</a>
+        </div>
+      </section>
+
+      <section class="ask-section sw-shell reveal" id="ask-skunkworks" aria-labelledby="ask-title">
+        <div class="ask-panel">
+          <div class="ask-heading">
+            <h2 id="ask-title">Pergunte à Skunkworks</h2>
+            <p>Serviços · soluções · formação</p>
+          </div>
+          <form class="ask-form" data-service-search role="search">
+            <label class="visually-hidden" for="service-search">O que precisa de resolver?</label>
+            <input id="service-search" name="query" type="search" autocomplete="off" placeholder="O que precisa de resolver? Ex.: produtividade, zero trust, automação…" required>
+            <button class="sw-button" type="submit">Pesquisar →</button>
+          </form>
+          <div class="ask-prompts" aria-label="Pesquisas sugeridas">
+            <button type="button" data-search-prompt="Cloud e produtividade">Cloud e produtividade</button>
+            <button type="button" data-search-prompt="IA e automação">IA e automação</button>
+            <button type="button" data-search-prompt="Segurança e formação">Segurança e formação</button>
+          </div>
+          <div class="ask-results" data-search-results aria-live="polite" hidden></div>
         </div>
       </section>
 
