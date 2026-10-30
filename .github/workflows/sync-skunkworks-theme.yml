@@ -1,0 +1,49 @@
+name: Synchronise Skunkworks Africa theme
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/sync-skunkworks-theme.yml]
+  workflow_dispatch:
+  schedule:
+    - cron: '23 5 * * 1'
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: country-theme-sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve the reviewed source commit
+        id: source
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha="$(git ls-remote https://github.com/skunkworks-africa/theme.git refs/heads/main | awk '{print $1}')"
+          test "${#sha}" -eq 40
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+      - name: Download approved CSS only
+        shell: bash
+        env:
+          THEME_SHA: ${{ steps.source.outputs.sha }}
+        run: |
+          set -euo pipefail
+          for file in tokens.css; do
+            curl --fail --location --silent --show-error --retry 3 "https://raw.githubusercontent.com/skunkworks-africa/theme/${THEME_SHA}/dist/${file}" -o "$file"
+            test -s "$file"
+          done
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          add-paths: tokens.css
+          branch: automation/skunkworks-theme-sync
+          delete-branch: true
+          commit-message: 'chore: sync Skunkworks Africa theme CSS'
+          title: 'Sync approved global theme CSS'
+          body: |
+            Source: skunkworks-africa/theme at `${{ steps.source.outputs.sha }}`.
+            Mode: tokens-only; country markup, logo labels, contacts, CNAME and local commerce are not overwritten.
+            Review accessibility and responsive display before merging.
