@@ -4,7 +4,6 @@ const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector("[data-menu-button]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
 const themeButton = document.querySelector("[data-theme-toggle]");
-const languageButton = document.querySelector("[data-language-toggle]");
 
 const storedTheme = localStorage.getItem("sw-theme");
 if (storedTheme === "light" || storedTheme === "dark") root.dataset.theme = storedTheme;
@@ -56,7 +55,8 @@ const resultContent = {
   }
 };
 
-let language = localStorage.getItem("sw-language") === "en" ? "en" : "pt";
+localStorage.removeItem("sw-language");
+let language = "pt";
 
 function updateAssessment() {
   const selected = document.querySelector('input[name="priority"]:checked');
@@ -71,20 +71,20 @@ function updateAssessment() {
 function applyLanguage(next) {
   language = next;
   root.lang = next === "pt" ? "pt-PT" : "en";
-  localStorage.setItem("sw-language", next);
   document.querySelectorAll("[data-pt][data-en]").forEach((element) => {
     element.textContent = element.dataset[next];
   });
-  if (languageButton) {
-    languageButton.textContent = next === "pt" ? "EN" : "PT";
-    languageButton.setAttribute("aria-label", next === "pt" ? "Mudar idioma para inglês" : "Switch language to Portuguese");
-  }
-  document.title = next === "pt"
-    ? "Skunkworks Portugal — Tecnologia com propósito"
-    : "Skunkworks Portugal — Technology with purpose";
+  const isContactPage = body.classList.contains("contact-page");
+  document.title = isContactPage
+    ? "Contacto — Skunkworks Portugal"
+    : next === "pt"
+      ? "Skunkworks Portugal — Tecnologia com propósito"
+      : "Skunkworks Portugal — Technology with purpose";
   document.querySelector('meta[name="description"]')?.setAttribute(
     "content",
-    next === "pt"
+    isContactPage
+      ? "Contacte a Skunkworks Portugal em Santarém. Fale connosco sobre cloud, segurança, automação e capacitação."
+      : next === "pt"
       ? "Skunkworks Portugal — tecnologia, cloud, segurança, automação e capacitação para equipas que querem avançar."
       : "Skunkworks Portugal—cloud, security, automation and enablement for teams ready to move forward."
   );
@@ -98,8 +98,7 @@ function applyLanguage(next) {
   updateAssessment();
 }
 
-languageButton?.addEventListener("click", () => applyLanguage(language === "pt" ? "en" : "pt"));
-applyLanguage(language);
+applyLanguage("pt");
 
 document.querySelectorAll('input[name="priority"]').forEach((input) => input.addEventListener("change", updateAssessment));
 
@@ -118,6 +117,30 @@ document.querySelector("[data-copy-result]")?.addEventListener("click", async ()
 });
 
 document.querySelector("[data-year]").textContent = new Date().getFullYear();
+
+document.querySelector("[data-lead-form]")?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const data = new FormData(form);
+  const status = document.querySelector("[data-form-status]");
+  const subject = `Pedido de contacto — ${data.get("interest")}`;
+  const body = [
+    "Novo pedido através do website Skunkworks Portugal",
+    "",
+    `Nome: ${data.get("name")}`,
+    `Email: ${data.get("email")}`,
+    `Empresa: ${data.get("company") || "Não indicada"}`,
+    `Interesse: ${data.get("interest")}`,
+    "",
+    "Desafio:",
+    data.get("message"),
+    "",
+    "Consentimento de contacto: Sim"
+  ].join("\n");
+
+  if (status) status.textContent = "A abrir a sua aplicação de email…";
+  window.location.href = `mailto:sales@skunkworks.pt?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
 
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver((entries) => {
